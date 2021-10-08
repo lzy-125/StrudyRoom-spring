@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>显示我的座位</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    <small>座位列表</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-4 column">
+        <div class="table table-hover table-striped">
+
+<!--            <a class="btn btn-primary" href="/c4">显示全部座位</a>-->
+<!--            <a class="btn btn-primary" href="/c3">显示未被占用座位</a>-->
+
+            <form action="/c2" method="post">
+                <!--                <span th:text="${error}" style="color: #ff0000;font-weight: bold"></span>-->
+                <input type="text" name="searchById" class="form-control" placeholder="请输入要查询的座位号">
+                <input type="submit" value="搜索" class="btn btn-primary">
+            </form>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>座位号</th>
+                    <th>座位操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="charis:${list}">
+                    <td th:text="${charis.getId()}"></td>
+                    <td>
+                        <a th:href="@{/exitChair(id=${charis.getId()},name=${session.name})}" method="post">退座</a>
+
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
